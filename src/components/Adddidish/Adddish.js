@@ -5,7 +5,7 @@ const Adddish = () => {
     const [imageUrl, setImageUrl] = useState(null);
     const [imageUrl2, setImageUrl2] = useState(null);
     const { register, handleSubmit } = useForm();
-  
+
     const handleImageUpload = event => {
         // console.log(event.target.files);
         const imageData = new FormData();
@@ -33,7 +33,7 @@ const Adddish = () => {
               console.log("error",error);
             });
           }
-    console.log('two image url',imageUrl,imageUrl2);
+    
         const onSubmit = data => {
          const NewDish={
           firstPhoto:imageUrl,
@@ -52,8 +52,8 @@ const Adddish = () => {
         })
         .then(res=> console.log('server side response: ',res)             
         );
-        }
-    
+        
+      }
     return (
         <div>
         <form onSubmit={handleSubmit(onSubmit)}>

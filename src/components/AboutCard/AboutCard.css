@@ -1,0 +1,18 @@
+.aboutCard img{
+ width:350px;
+}
+.aboutCard{
+    margin: 0 10px;
+}
+.content{
+    padding-left: 40px;
+    margin-top: 10px;
+}
+.card-link{
+    color: rgb(75, 157, 220);
+    font-weight: 500;
+    cursor: pointer;
+}
+.icon{
+    color: chartreuse;
+}

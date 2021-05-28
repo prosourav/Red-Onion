@@ -1,7 +1,8 @@
 import React from 'react';
-import Adddish from '../Adddidish/Adddish';
-import FoodList from '../Adddidish/FoodList/FoodList';
+import About from '../About/About';
 import Banner from '../Banner/Banner';
+import FoodList from '../FoodList/FoodList';
+import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
 
 const Home = () => {
@@ -10,6 +11,9 @@ const Home = () => {
             <Header></Header>
             <Banner></Banner>
             <FoodList></FoodList>
+            <About></About>
+            <Footer></Footer>
+            
         </div>
     );
 };

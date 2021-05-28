@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import Foodcard from '../../Foodcard/Foodcard';
+import Foodcard from './../Foodcard/Foodcard';
 import './FoodList.css'
 const FoodList = () => {
     const [mealType, setMealType] = useState('Breakfast');
@@ -11,9 +11,7 @@ const FoodList = () => {
         .then(data=>setFoods(data))
     },[]);
     const selectedFoods = foods.filter(foods=> foods.dishType === mealType);
-    // const selectedFoods = foods.filter(foods=> foods.dishType === 'lunch');
     console.log(selectedFoods);
-    // console.log('selectedFoods :',selectedFoods);
     return (
         <div>
             <section className='NavItem d-flex justify-content-center align-items-center'>
