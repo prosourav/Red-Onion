@@ -1,0 +1,28 @@
+.banner{
+    background-image: url('./../../Images/bannerbackground.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 600px;
+}
+input{
+    background-color: white;
+    border-radius: 10px;
+    width: 400px;
+    height: 40px;
+}
+.banner h1{
+    margin-bottom: 40px;
+}
+.search{
+    position: relative;
+    padding: 0px 70px;
+}
+.search-button{
+    border-radius: 10px;
+    background-color: red;
+    color: whitesmoke;
+    position: absolute;
+    right: 90px;
+    width: 90px;
+    height: 40px;
+}

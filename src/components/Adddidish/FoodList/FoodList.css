@@ -1,0 +1,33 @@
+.NavItem a{
+    margin-top: 40px;
+    text-decoration: none;
+    padding:0 20px;
+    font-weight: 800;
+    font-size: large;
+    color: black;
+}
+
+.food {
+    display: inline-block;
+    text-decoration: none;
+    color:  #b81d1d ;
+    position: relative;
+    transition: all 0.3s ease;  
+  }
+  
+  .food::after {  
+    content: "";
+    position: absolute;
+    height: 3px;
+    background-color: #b81d1d;
+    width: 120%;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+  }
+  .Foods{
+    margin-top: 4%;
+  }
+  
+  
+      

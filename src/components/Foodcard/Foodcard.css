@@ -1,0 +1,19 @@
+.single-card{
+    margin: 2% 1%;  
+}
+.my-card img{
+    width: 200px;
+    margin: 30px auto;
+}
+.my-card{
+    height: 450px;
+    width: 340px;
+    text-align: center;
+}
+.my-card:hover{
+    box-shadow: 1px 1px 23px 2px #f3f3f3;
+    transition-duration: 0.8s;
+}
+.btn{
+    margin: 3% auto;
+}
