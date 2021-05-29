@@ -6,14 +6,23 @@ import {
   Route,
   Link
 } from "react-router-dom";
+import FoodDetails from './components/FoodDetails/FoodDetails';
 function App() {
   return (
     <Router>
     <Switch>
     <div>
 
-    <Route path='/'>
+    <Route exact path='/'>
      <Home></Home>
+     </Route>
+
+     <Route path='/home'>
+     <Home></Home>
+     </Route>
+
+     <Route path='/food/:id'>
+      <FoodDetails></FoodDetails>
      </Route>
      
     </div>

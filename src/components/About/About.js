@@ -16,7 +16,7 @@ const About = () => {
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus, culpa recusandae consectetur exercitationem autem perspiciatis amet unde accusamus possimus vitae rerum laborum  sit amet consectetur adipisicing elit. Doloribus,  nostrum ipsum!
             </p>
             </div>
-            <div className='sec-two d-flex '>
+            <div className='sec-two d-flex'>
                 {
                     about.map(about=><AboutCard key={about._id} about={about}></AboutCard>)
                 }
