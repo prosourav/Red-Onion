@@ -1,4 +1,51 @@
+.container{
+margin-top: 7%;
+}
 .photos{
     height: 100px;
     width: 100px;
+}
+.firstimage{
+    border: 1px solid lightgrey;
+    height: 100px;
+    width: 100px;
+    margin-right: 10px;
+}
+.secondPhoto{
+    border: 1px solid lightgrey;
+    height: 100px;
+    width: 100px;  
+    margin-left: 10px; 
+}
+.addButton{
+    background-color:  red;
+    color: wheat;
+    width: 85px;
+    height: 36px;
+    border-radius: 20px;
+    margin: 25px 0;
+}
+button:focus { outline: none; }
+.cart-btn-div{
+    border: 1px solid rgb(223, 215, 206);
+    border-radius: 25px;
+    margin-left: 40px;
+    width: 100px;
+}
+.cart-btn-div button{
+    background-color: transparent;
+    border: none;
+}
+.cart-value{
+    margin:10px 15px ;
+}
+.row h1{
+    margin: 8% 0;
+}
+.row p{
+    margin-bottom: 5%;
+}
+.foods-photo{
+    margin-left: 5%;
+    margin-top: 5%;
 }
