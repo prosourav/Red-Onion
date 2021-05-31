@@ -9,7 +9,7 @@ import { faCartPlus } from '@fortawesome/free-solid-svg-icons';
 const FoodDetails = () => {
     const [dishdetail,setdishdetail] = useState({});
     const [Image,setImage] = useState('firstimage');
-    const [cartValue,setCartVCalue] = useState(0);
+    const [cartValue,setCartValue] = useState(0);
     const {id} = useParams();
     const url = 'http://localhost:8000/fooddetail'
     fetch(`${url}/${id}`)
@@ -32,12 +32,12 @@ const FoodDetails = () => {
             <div className='d-flex'>
             <h2>${dishdetail.price}</h2>
             <div className='d-flex align-items-center justify-content-center cart-btn-div'>
-            <button>+</button>
+            <button onClick={()=> setCartValue(cartValue+1)}>+</button>
             <span className='cart-value'>{cartValue}</span>
-            <button>-</button>
+            <button onClick={ (cartValue > 0) ? ()=>  setCartValue(cartValue-1) : ()=>setCartValue(0)}>-</button>
             </div>      
             </div>
-            <button className='addButton'><FontAwesomeIcon className="cart" icon={faCartPlus} />Add</button>
+            <button className='addButton'><FontAwesomeIcon className="cart" icon={faCartPlus}  />Add</button>
             <div className='foods-photo'>
          <img src={dishdetail.firstPhoto} onClick={()=>setImage('firstimage')} className={Image==='firstimage' ? 'firstimage' : 'photos'} alt="" />
          <img src={dishdetail.secondPhoto} onClick={()=>setImage('secondPhoto')} className={Image==='secondPhoto' ? 'secondPhoto' : 'photos'} alt="" />

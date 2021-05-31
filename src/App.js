@@ -7,6 +7,7 @@ import {
   Link
 } from "react-router-dom";
 import FoodDetails from './components/FoodDetails/FoodDetails';
+import Cart from './components/Cart/Cart';
 function App() {
   return (
     <Router>
@@ -24,6 +25,10 @@ function App() {
      <Route path='/food/:id'>
       <FoodDetails></FoodDetails>
      </Route>
+
+     <Route path='/cart'>
+    <Cart></Cart>
+    </Route>
      
     </div>
     </Switch>
