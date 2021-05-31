@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { createContext, useState } from 'react';
 import Home from './components/Home/Home';
 import {
   BrowserRouter as Router,
@@ -7,9 +7,34 @@ import {
   Link
 } from "react-router-dom";
 import FoodDetails from './components/FoodDetails/FoodDetails';
-import Cart from './components/Cart/Cart';
+// import Cart from './components/Cart/Cart';
+
+export const cartContext = createContext();
+
 function App() {
+
+const [cart,setCart] = useState([]);
+
+const handleaddToCart = (product,qounatity) =>{
+  // console.log(product);
+  const newCart = {
+    prdName:product.dishName,
+    QuanTity:qounatity,
+    cost: product.price,
+    prdImage:product.firstPhoto
+  }
+  const url = 'http://localhost:8000/addToCart'
+       fetch(url,
+         {method:'POST',
+         headers:{'content-type' : 'application/json'},
+         body:JSON.stringify(newCart)
+       })
+       .then(res=> console.log('server side response: ',res)             
+       );
+}
+
   return (
+    <cartContext.Provider value = {[cart,setCart]}>
     <Router>
     <Switch>
     <div>
@@ -23,16 +48,15 @@ function App() {
      </Route>
 
      <Route path='/food/:id'>
-      <FoodDetails></FoodDetails>
+      <FoodDetails handleaddToCart={handleaddToCart}></FoodDetails>
      </Route>
 
-     <Route path='/cart'>
-    <Cart></Cart>
-    </Route>
+    
      
     </div>
     </Switch>
     </Router>
+    </cartContext.Provider>
   );
 }
 

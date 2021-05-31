@@ -1,12 +1,15 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useParams } from 'react-router';
 import './FoodDetails.css';
 import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartPlus } from '@fortawesome/free-solid-svg-icons';
+import { cartContext } from '../../App';
 
-const FoodDetails = () => {
+
+const FoodDetails = (props) => {
+    const [cart,setCart] = useContext(cartContext);
     const [dishdetail,setdishdetail] = useState({});
     const [Image,setImage] = useState('firstimage');
     const [cartValue,setCartValue] = useState(0);
@@ -17,7 +20,8 @@ const FoodDetails = () => {
     .then(data=>{
         setdishdetail(data);
     });
-    console.log(dishdetail);
+    // console.log(dishdetail);
+    // console.log(props);
 
     return (
         <>
@@ -37,7 +41,7 @@ const FoodDetails = () => {
             <button onClick={ (cartValue > 0) ? ()=>  setCartValue(cartValue-1) : ()=>setCartValue(0)}>-</button>
             </div>      
             </div>
-            <button className='addButton'><FontAwesomeIcon className="cart" icon={faCartPlus}  />Add</button>
+            <button  onClick={()=>props.handleaddToCart(dishdetail,cartValue)} className='addButton'><FontAwesomeIcon className="cart" icon={faCartPlus}  />Add</button>
             <div className='foods-photo'>
          <img src={dishdetail.firstPhoto} onClick={()=>setImage('firstimage')} className={Image==='firstimage' ? 'firstimage' : 'photos'} alt="" />
          <img src={dishdetail.secondPhoto} onClick={()=>setImage('secondPhoto')} className={Image==='secondPhoto' ? 'secondPhoto' : 'photos'} alt="" />
@@ -60,3 +64,4 @@ const FoodDetails = () => {
 
 export default FoodDetails;
 
+//
