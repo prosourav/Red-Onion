@@ -23,27 +23,48 @@ const FoodDetails = () => {
     });
     // console.log(dishdetail);
     // console.log(props);
-    i
+    
     const handleaddToCart = (product,qounatity) =>{
-        // console.log(product);
+        console.log("product and quantity from function: ",product,qounatity);
         const newCart = {
           prdName:product.dishName,
           QuanTity:qounatity,
           cost: product.price,
           prdImage:product.firstPhoto
         }
-        
-        const url = 'http://localhost:8000/addToCart'
-             fetch(url,
+       
+        const added = cart.find(cart=>cart.prdName===product.dishName);
+        console.log(added);
+        if(added){
+          // console.log("product and quantity from if block of function : ",product,qounatity);
+            const id = added._id;
+            const newQuantity = qounatity;
+            const updateCartQuantity = {id,newQuantity} 
+            // console.log('updateCartQuantity:',updateCartQuantity)
+            const url = `http://localhost:8000/updateQuantity/${id}`;
+            fetch(url,{
+              method:'PATCH',
+              headers:{'Content-type' : 'application/json'},
+              body:JSON.stringify(updateCartQuantity)
+            })
+            .then(res=>res.json())
+            .then(data=>{
+              console.log('updated');
+            })
+            setSuccess(true);
+        }
+        else{
+             const url = 'http://localhost:8000/addToCart'
+               fetch(url,
                {method:'POST',
                headers:{'content-type' : 'application/json'},
                body:JSON.stringify(newCart)
-             })
-             .then(res=> console.log('server side response: ',res)             
-             );
-             setSuccess(true);
-      }
-
+               })
+               .then(res=> console.log('server side response: ',res)             
+               );
+               setSuccess(true);
+              }
+         }
       if(success){
         setTimeout(()=>setSuccess(false),2000)
       }
