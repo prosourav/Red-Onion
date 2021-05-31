@@ -4,15 +4,16 @@ import './FoodDetails.css';
 import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCartPlus } from '@fortawesome/free-solid-svg-icons';
+import { faCartPlus, faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 import { cartContext } from '../../App';
 
 
-const FoodDetails = (props) => {
+const FoodDetails = () => {
     const [cart,setCart] = useContext(cartContext);
+    const [success,setSuccess] = useState(false);
     const [dishdetail,setdishdetail] = useState({});
     const [Image,setImage] = useState('firstimage');
-    const [cartValue,setCartValue] = useState(0);
+    const [cartValue,setCartValue] = useState(1);
     const {id} = useParams();
     const url = 'http://localhost:8000/fooddetail'
     fetch(`${url}/${id}`)
@@ -22,7 +23,30 @@ const FoodDetails = (props) => {
     });
     // console.log(dishdetail);
     // console.log(props);
+    i
+    const handleaddToCart = (product,qounatity) =>{
+        // console.log(product);
+        const newCart = {
+          prdName:product.dishName,
+          QuanTity:qounatity,
+          cost: product.price,
+          prdImage:product.firstPhoto
+        }
+        
+        const url = 'http://localhost:8000/addToCart'
+             fetch(url,
+               {method:'POST',
+               headers:{'content-type' : 'application/json'},
+               body:JSON.stringify(newCart)
+             })
+             .then(res=> console.log('server side response: ',res)             
+             );
+             setSuccess(true);
+      }
 
+      if(success){
+        setTimeout(()=>setSuccess(false),2000)
+      }
     return (
         <>
         <Header></Header>
@@ -38,10 +62,15 @@ const FoodDetails = (props) => {
             <div className='d-flex align-items-center justify-content-center cart-btn-div'>
             <button onClick={()=> setCartValue(cartValue+1)}>+</button>
             <span className='cart-value'>{cartValue}</span>
-            <button onClick={ (cartValue > 0) ? ()=>  setCartValue(cartValue-1) : ()=>setCartValue(0)}>-</button>
+            <button onClick={()=> (cartValue > 1) && setCartValue(cartValue-1)}>-</button>
             </div>      
             </div>
-            <button  onClick={()=>props.handleaddToCart(dishdetail,cartValue)} className='addButton'><FontAwesomeIcon className="cart" icon={faCartPlus}  />Add</button>
+
+           
+            <button  onClick={()=>handleaddToCart(dishdetail,cartValue)} className='addButton'><FontAwesomeIcon className="cart" icon={faCartPlus}  />Add</button>
+            {success &&  <span className='text-success success'> <FontAwesomeIcon className="cart text-success" icon={faCheckCircle} />Item added to cart</span>}
+            
+
             <div className='foods-photo'>
          <img src={dishdetail.firstPhoto} onClick={()=>setImage('firstimage')} className={Image==='firstimage' ? 'firstimage' : 'photos'} alt="" />
          <img src={dishdetail.secondPhoto} onClick={()=>setImage('secondPhoto')} className={Image==='secondPhoto' ? 'secondPhoto' : 'photos'} alt="" />

@@ -49,3 +49,7 @@ button:focus { outline: none; }
     margin-left: 5%;
     margin-top: 5%;
 }
+.success{
+    margin-left: 25px;
+    font-style: italic;
+}

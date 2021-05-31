@@ -1,4 +1,4 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useEffect, useState } from 'react';
 import Home from './components/Home/Home';
 import {
   BrowserRouter as Router,
@@ -15,23 +15,13 @@ function App() {
 
 const [cart,setCart] = useState([]);
 
-const handleaddToCart = (product,qounatity) =>{
-  // console.log(product);
-  const newCart = {
-    prdName:product.dishName,
-    QuanTity:qounatity,
-    cost: product.price,
-    prdImage:product.firstPhoto
-  }
-  const url = 'http://localhost:8000/addToCart'
-       fetch(url,
-         {method:'POST',
-         headers:{'content-type' : 'application/json'},
-         body:JSON.stringify(newCart)
-       })
-       .then(res=> console.log('server side response: ',res)             
-       );
-}
+useEffect(()=>{
+  fetch('http://localhost:8000/myCart')
+  .then(res=>res.json())
+  .then(data=>setCart(data));
+},[cart]);
+
+
 
   return (
     <cartContext.Provider value = {[cart,setCart]}>
@@ -48,7 +38,7 @@ const handleaddToCart = (product,qounatity) =>{
      </Route>
 
      <Route path='/food/:id'>
-      <FoodDetails handleaddToCart={handleaddToCart}></FoodDetails>
+      <FoodDetails></FoodDetails>
      </Route>
 
     
