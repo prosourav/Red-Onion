@@ -7,7 +7,7 @@ import {
   Link
 } from "react-router-dom";
 import FoodDetails from './components/FoodDetails/FoodDetails';
-// import Cart from './components/Cart/Cart';
+import Cart from './components/Cart/Cart';
 
 export const cartContext = createContext();
 
@@ -39,6 +39,10 @@ useEffect(()=>{
 
      <Route path='/food/:id'>
       <FoodDetails></FoodDetails>
+     </Route>
+
+     <Route path='/checkout'>
+      <Cart></Cart>
      </Route>
 
     

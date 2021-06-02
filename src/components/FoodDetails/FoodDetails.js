@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import './FoodDetails.css';
 import Footer from '../Footer/Footer';
@@ -13,17 +13,25 @@ const FoodDetails = () => {
     const [success,setSuccess] = useState(false);
     const [dishdetail,setdishdetail] = useState({});
     const [Image,setImage] = useState('firstimage');
-    const [cartValue,setCartValue] = useState(1);
+    const [QuantityValue,setQuantityValue] = useState(1);
     const {id} = useParams();
-    const url = 'http://localhost:8000/fooddetail'
-    fetch(`${url}/${id}`)
-    .then(res=> res.json())
-    .then(data=>{
-        setdishdetail(data);
-    });
-    // console.log(dishdetail);
-    // console.log(props);
+
+ 
+
+    // getting details of dish from db
+    useEffect(()=>{
+      const url = 'http://localhost:8000/fooddetail'
+      fetch(`${url}/${id}`)
+      .then(res=> res.json())
+      .then(data=>{
+          setdishdetail(data);
+      });
+    },[]);
+   
+
+   
     
+    // adding cart and quantity value (product and dishdetail same but as a parameter i changed the name)
     const handleaddToCart = (product,qounatity) =>{
         console.log("product and quantity from function: ",product,qounatity);
         const newCart = {
@@ -34,12 +42,13 @@ const FoodDetails = () => {
         }
        
         const added = cart.find(cart=>cart.prdName===product.dishName);
-        console.log(added);
+
         if(added){
           // console.log("product and quantity from if block of function : ",product,qounatity);
             const id = added._id;
             const newQuantity = qounatity;
             const updateCartQuantity = {id,newQuantity} 
+
             // console.log('updateCartQuantity:',updateCartQuantity)
             const url = `http://localhost:8000/updateQuantity/${id}`;
             fetch(url,{
@@ -66,8 +75,10 @@ const FoodDetails = () => {
               }
          }
       if(success){
-        setTimeout(()=>setSuccess(false),2000)
+        setTimeout(()=>setSuccess(false),2000);
       }
+
+
     return (
         <>
         <Header></Header>
@@ -81,14 +92,14 @@ const FoodDetails = () => {
             <div className='d-flex'>
             <h2>${dishdetail.price}</h2>
             <div className='d-flex align-items-center justify-content-center cart-btn-div'>
-            <button onClick={()=> setCartValue(cartValue+1)}>+</button>
-            <span className='cart-value'>{cartValue}</span>
-            <button onClick={()=> (cartValue > 1) && setCartValue(cartValue-1)}>-</button>
+            <button onClick={()=> setQuantityValue(QuantityValue+1)}>+</button>
+            <span className='cart-value'>{QuantityValue}</span>
+            <button onClick={()=> (QuantityValue > 1) && setQuantityValue(QuantityValue-1)}>-</button>
             </div>      
             </div>
 
            
-            <button  onClick={()=>handleaddToCart(dishdetail,cartValue)} className='addButton'><FontAwesomeIcon className="cart" icon={faCartPlus}  />Add</button>
+            <button  onClick={()=>handleaddToCart(dishdetail,QuantityValue)} className='addButton'><FontAwesomeIcon className="cart" icon={faCartPlus} />Add</button>
             {success &&  <span className='text-success success'> <FontAwesomeIcon className="cart text-success" icon={faCheckCircle} />Item added to cart</span>}
             
 
@@ -114,4 +125,3 @@ const FoodDetails = () => {
 
 export default FoodDetails;
 
-//
