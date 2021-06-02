@@ -2,12 +2,32 @@ import React, { useState } from 'react';
 import Header from '../Header/Header';
 import './Cart.css';
 import { useForm } from 'react-hook-form';
+import {CardElement, Elements} from '@stripe/react-stripe-js';
+import {loadStripe} from '@stripe/stripe-js';
+import PaymentCard from './PaymentCard';
+
+const stripePromise = loadStripe('pk_test_TYooMQauvdEDq54NiTphI7jx');
 
 const Cart = () => {
     const { register, handleSubmit, formState: { errors }} = useForm();
-    const [formValue,setformValue] = useState({});
+    const [formValue,setformValue] = useState({
+        Name:'',
+        RoadName:'',
+        FlatNo:'',
+        RoomNo:'',
+        AddressPIN:''
+    });
+    const [isSubmitted,setIsSubmitted] = useState(false);
 
     const onSubmit =( data , e)=>{
+        const newAddress = {
+            Name:data.Name,
+            RoadName:data.RoadName,
+            FlatNo:data.FlatNo,
+            RoomNo:data.RoomNo,
+            FullAddress:data.FullAddress
+        }
+        setformValue(newAddress);
         console.log(data);
         e.target.reset();
     }
@@ -35,7 +55,7 @@ const Cart = () => {
                 {errors.FlatNo && <span className='text-danger'> Flat No is required</span>}
                 </div>
                 <div className='py-2'>
-                <input type="Number" class="form-control" placeholder='Room No' value={32} {...register("Room No", { required: true})} />
+                <input type="text" class="form-control" placeholder='Room No' {...register("RoomNo", { required: true})} />
                 {errors.FlatNo && <span className='text-danger'> Room No is required</span>}
                 </div>
                 <div className='py-2'>
@@ -47,14 +67,26 @@ const Cart = () => {
                 </div>
               
             </form>
+            {isSubmitted &&  <div>
+                   <h1>Please Make Payment</h1>
+                      <Elements stripe={stripePromise}>
+                      <PaymentCard></PaymentCard>
+                      </Elements>
+            </div>}
+ 
             </div>
         </div>
-        <div className='col-md-5 col-sm-12'>
-        <h1>cart section</h1>
+                <div className='col-md-6 col-sm-12 cart-box'>
+                    <div className='cart-calculation mt-3'>
+                    <h2 className='mb-5'>Form Star Kabab And Restaura
+                    Arriving in 20-30 min
+                    107 Rd No 9</h2>
+                    
+                    </div>
+                </div>
+         </div>
         </div>
-        </div>
-        </div>
-        </div>
+    </div>
     );
 };
 
