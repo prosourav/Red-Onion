@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faShoppingBasket, faShoppingCart } from '@fortawesome/free-solid-svg-icons'
 import { cartContext } from '../../App';
 import { useHistory } from 'react-router';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
 
@@ -18,7 +19,7 @@ const Header = () => {
             <div className='pr-5 mr-5'>
         <FontAwesomeIcon style={{color:'white',paddingTop:'4px'}} onClick={()=>history.push('/checkout')} icon={faShoppingCart} size='2x' />
         <span class="badge badge-danger">{cart.length}</span>
-        <button className='nav-btn' style={{marginLeft:'5px'}}>SignIn</button>
+       <Link to='/login'><button className='nav-btn' style={{marginLeft:'5px'}}>SignIn</button> </Link> 
         <button className='nav-btn' >SignUp</button>
             </div>
         </div>

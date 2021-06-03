@@ -1,15 +1,31 @@
-import React from 'react';
-import firebase from "firebase/app";
-import "firebase/auth";
-import firebaseConfig from './firebase.config';
+import React, { useEffect } from 'react';
+import LoginModal from './LoginModal';
+import { useLocation } from 'react-router';
 
-if(firebase.apps.length === 0){
-    firebase.initializeApp(firebaseConfig);
-  }
+
 const Login = () => {
+    const [modalIsOpen,setIsOpen] = React.useState(false);
+
+
+    function openModal() {
+        setIsOpen(true);
+      }
+    
+    
+      function closeModal(){
+        setIsOpen(false);
+      }
+
+   const pathname = useLocation();
+    const path = pathname.pathname;
+     
+
+      useEffect(()=> path==='/login' && openModal());
+
+
     return (
         <div>
-            
+            <LoginModal modal={modalIsOpen} closeModal={closeModal}></LoginModal>
         </div>
     );
 };

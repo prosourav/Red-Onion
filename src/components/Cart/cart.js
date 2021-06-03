@@ -6,9 +6,12 @@ import {CardElement, Elements} from '@stripe/react-stripe-js';
 import {loadStripe} from '@stripe/stripe-js';
 import PaymentCard from './PaymentCard';
 
+
 const stripePromise = loadStripe('pk_test_TYooMQauvdEDq54NiTphI7jx');
 
 const Cart = () => {
+    
+ 
     const { register, handleSubmit, formState: { errors }} = useForm();
     const [formValue,setformValue] = useState({
         Name:'',
