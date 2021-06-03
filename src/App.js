@@ -8,7 +8,9 @@ import {
 } from "react-router-dom";
 import FoodDetails from './components/FoodDetails/FoodDetails';
 import Cart from './components/Cart/Cart';
+import SignIn from './components/Login/SignIn';
 import Login from './components/Login/Login';
+
 
 export const cartContext = createContext();
 
@@ -46,8 +48,13 @@ useEffect(()=>{
       <Cart></Cart>
      </Route>
 
+
      <Route path='/login'>
       <Login></Login>
+     </Route>
+
+     <Route path='/signIn'>
+      <SignIn></SignIn>
      </Route>
      
     </div>
