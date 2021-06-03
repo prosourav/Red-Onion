@@ -1,10 +1,12 @@
 import React, { useEffect } from 'react';
 import LoginModal from './LoginModal';
 import { useLocation } from 'react-router';
-
+import './Login.css'
 
 const Login = () => {
     const [modalIsOpen,setIsOpen] = React.useState(false);
+    
+
 
 
     function openModal() {
@@ -24,9 +26,11 @@ const Login = () => {
 
 
     return (
-        <div>
+
+        <div className='background'>
             <LoginModal modal={modalIsOpen} closeModal={closeModal}></LoginModal>
         </div>
+        
     );
 };
 
