@@ -20,7 +20,7 @@ const Header = () => {
         <FontAwesomeIcon style={{color:'white',paddingTop:'4px'}} onClick={()=>history.push('/checkout')} icon={faShoppingCart} size='2x' />
         <span class="badge badge-danger">{cart.length}</span>
        <Link to='/login'><button className='nav-btn' style={{marginLeft:'5px'}}>SignIn</button> </Link> 
-        <button className='nav-btn' >SignUp</button>
+       <Link to='/signIn'><button className='nav-btn' >SignUp</button></Link>
             </div>
         </div>
     );

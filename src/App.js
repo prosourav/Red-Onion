@@ -10,6 +10,7 @@ import FoodDetails from './components/FoodDetails/FoodDetails';
 import Cart from './components/Cart/Cart';
 import SignIn from './components/Login/SignIn';
 import Login from './components/Login/Login';
+import Header from './components/Header/Header';
 
 
 export const cartContext = createContext();

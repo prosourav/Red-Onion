@@ -5,8 +5,9 @@ import "firebase/auth";
 import firebaseConfig from './firebase.config';
 import { useForm } from "react-hook-form";
 import google from './../../Images/ICON/google.png';
-
-
+import './Login.css';
+import { Link, useHistory } from 'react-router-dom';
+import swal from 'sweetalert';
 
 if(firebase.apps.length === 0){
     firebase.initializeApp(firebaseConfig);
@@ -16,27 +17,92 @@ if(firebase.apps.length === 0){
 
 const SignIn = () => {
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
-
+    const history=useHistory();
+    // const [signInUser,setSignInUser] = useState({
+    //     user:'',
+    //     email:'',
+    //     error:'',
+    //     success:''
+    // })
     const onSubmit =( data , e)=> {
-        const {name,email,password} =data;
-        if(name && email && password){
-        console.log('signIn ',data);
-        e.target.reset();
+        
+        const {Name,email,password} =data;
+        firebase.auth().createUserWithEmailAndPassword(email, password)
+        .then((userCredential) => {
+          // Signed in
+
+          verifyEmail();
+          updateUserName(Name);
+          const user = userCredential.user;
+          console.log(user);
+          swal("Good job!", "SignUp Successful", "success").then(()=>history.push('/logIn'));
+          
+          // ...
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          swal("Ooops..!", errorMessage, "error");
+        });
+
+         e.target.reset();
     }
-    if(!name && email && password){
-        console.log('working');
+    function verifyEmail (){
+        var user = firebase.auth().currentUser;
+
+        user.sendEmailVerification().then(function() {
+        // Email sent.
+        }).catch(function(error) {
+        // An error happened.
+        });
     }
+    const updateUserName=function(name){
+        const user = firebase.auth().currentUser;
+
+        user.updateProfile({
+        displayName: name,
+        }).then(function() {
+        console.log('Name updated');
+        }).catch(function(error) {
+        // An error happened.
+        });
     }
+    
+
+
     const handlegoogleLogin =()=>{
-        console.log('googleLog in');
+        const googleProvider = new firebase.auth.GoogleAuthProvider();
+        firebase.auth()
+  .signInWithPopup(googleProvider)
+  .then((result) => {
+    /** @type {firebase.auth.OAuthCredential} */
+    const credential = result.credential;
+
+    // This gives you a Google Access Token. You can use it to access the Google API.
+    const token = credential.accessToken;
+    // The signed-in user info.
+    const user = result.user;
+
+    console.log('user: ',user);
+  }).catch((error) => {
+    // Handle Errors here.
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    // The email of the user's account used.
+    const email = error.email;
+    // The firebase.auth.AuthCredential type that was used.
+    const credential = error.credential;
+    // ...
+  });
     }
 
 
     return (
         <div>
-        <h4 style={{textAlign:'center'}}>Please SignIn</h4>
+        <div className='form-box'>
+        <h4 style={{textAlign:'center'}}>Please Signup</h4>
    
-        <form onSubmit={handleSubmit(onSubmit)} className='mx-5 login-form'>
+        <form onSubmit={handleSubmit(onSubmit)} className='mx-5'>
         
         <div className='py-1'>
         <input placeholder='Enter your name' type="text" class="form-control" {...register("Name", { required: true })} />
@@ -61,16 +127,17 @@ const SignIn = () => {
         
         </form>
        <div style={{textAlign:"center"}}>  
-        <h3>or</h3>
+        <h6>or</h6>
         </div>
         <div className="G-sign">
 
-        <h5 style={{color:"whitesmoke"}} onClick={()=>handlegoogleLogin} className="option mx-3" >  <img style={{width:'30px', height:'30px'}} src={google} alt="" /> &nbsp; Continue with Google</h5>
+        <h5 style={{color:"whitesmoke"}} onClick={handlegoogleLogin} className="option mx-3" >  <img style={{width:'30px', height:'30px'}} src={google} alt="" /> &nbsp; Continue with Google</h5>
 
         </div>
-        
-        <small style={{color:'black', margin:'25% 30%', fontWeight:'bold'}}>Have an Account? login</small>
        
+        <small style={{color:'black', margin:'25% 32%', fontWeight:'bold'}}>Have An Account? <Link to='/login'> login </Link></small>
+        
+        </div>
         </div>
         
     );
