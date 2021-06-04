@@ -12,12 +12,20 @@ import SignIn from './components/Login/SignIn';
 import Login from './components/Login/Login';
 import Header from './components/Header/Header';
 
-
+export const userContext = createContext();
 export const cartContext = createContext();
 
 function App() {
 
+  const [loggedInUser,setLoggedInUser] = useState({
+    name:'',
+    email:'',
+    isLoggedIn:false,
+    photoURL:''
+  });
+
 const [cart,setCart] = useState([]);
+
 
 useEffect(()=>{
   fetch('http://localhost:8000/myCart')
@@ -28,6 +36,7 @@ useEffect(()=>{
 
 
   return (
+    <userContext.Provider value = {[loggedInUser,setLoggedInUser]}>
     <cartContext.Provider value = {[cart,setCart]}>
     <Router>
     <Switch>
@@ -62,6 +71,7 @@ useEffect(()=>{
     </Switch>
     </Router>
     </cartContext.Provider>
+    </userContext.Provider>
   );
 }
 

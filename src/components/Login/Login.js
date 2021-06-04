@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useForm } from "react-hook-form";
 import { Link } from 'react-router-dom';
 import google from './../../Images/ICON/google.png';
 import firebase from "firebase/app";
 import firebaseConfig from './firebase.config';
 import './Login.css'
+import { userContext } from '../../App';
 
 
 if(firebase.apps.length === 0){
@@ -12,6 +13,7 @@ if(firebase.apps.length === 0){
   }
 const Login = () => {
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
+    const [loggedInUser,setLoggedInUser] = useContext(userContext);
 
     const onSubmit =( data , e)=> {
 
