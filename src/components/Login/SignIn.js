@@ -18,25 +18,19 @@ if(firebase.apps.length === 0){
 const SignIn = () => {
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
     const history=useHistory();
-    // const [signInUser,setSignInUser] = useState({
-    //     user:'',
-    //     email:'',
-    //     error:'',
-    //     success:''
-    // })
+  
     const onSubmit =( data , e)=> {
         
         const {Name,email,password,Confirmpassword} = data;
         // console.log(data);
         firebase.auth().createUserWithEmailAndPassword(email,Confirmpassword)
         .then((userCredential) => {
-          // Signed in
 
           verifyEmail();
           updateUserName(Name);
           const user = userCredential.user;
-          console.log(user);
-          swal("Good job!", "SignUp Successful", "success").then(()=>history.push('/logIn'));
+          // console.log(user);
+          swal("Signup Is Almost Complete!", "A verification email will be sent to your provided email", "success").then(()=>history.push('/logIn'));
           
           // ...
         })
@@ -69,33 +63,6 @@ const SignIn = () => {
         });
     }
     
-
-
-  //   const handlegoogleLogin =()=>{
-  //       const googleProvider = new firebase.auth.GoogleAuthProvider();
-  //       firebase.auth()
-  // .signInWithPopup(googleProvider)
-  // .then((result) => {
-  //   /** @type {firebase.auth.OAuthCredential} */
-  //   const credential = result.credential;
-
-  //   // This gives you a Google Access Token. You can use it to access the Google API.
-  //   const token = credential.accessToken;
-  //   // The signed-in user info.
-  //   const user = result.user;
-
-  //   console.log('user: ',user);
-  // }).catch((error) => {
-  //   // Handle Errors here.
-  //   const errorCode = error.code;
-  //   const errorMessage = error.message;
-  //   // The email of the user's account used.
-  //   const email = error.email;
-  //   // The firebase.auth.AuthCredential type that was used.
-  //   const credential = error.credential;
-  //   // ...
-  // });
-  //   }
 
 
     return (

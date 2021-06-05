@@ -1,11 +1,12 @@
 import React, { useContext, useState } from 'react';
 import { useForm } from "react-hook-form";
-import { Link } from 'react-router-dom';
+import { Link, useHistory, useLocation } from 'react-router-dom';
 import google from './../../Images/ICON/google.png';
 import firebase from "firebase/app";
 import firebaseConfig from './firebase.config';
 import './Login.css'
 import { userContext } from '../../App';
+import swal from 'sweetalert';
 
 
 if(firebase.apps.length === 0){
@@ -15,6 +16,11 @@ const Login = () => {
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
     const [loggedInUser,setLoggedInUser] = useContext(userContext);
     // const [emailVerified,setEmailVerified]=useState(false);
+
+    const history = useHistory();
+    const location = useLocation();
+    const { from } = location.state || { from: { pathname: "/" } };
+
 
     const onSubmit =( data , e)=> {
 
@@ -33,10 +39,11 @@ const Login = () => {
             newUser.email = user.email;
             newUser.isSignedIn = true;
             setLoggedInUser(newUser);
-            alert('login successfull');
+            swal(`Welcome Back ${newUser.name}`, "Log in Successful", "success").then(()=>history.replace(from));
+            
           }
           else{
-            alert('Your Email is Not verified');
+            swal("Ooops..!", "Please Verify Your Email", "warning");
           }
             
 
@@ -44,7 +51,7 @@ const Login = () => {
         .catch((error) => {
         //   const errorCode = error.code;
           const errorMessage = error.message;
-          console.log('errorMessage:',errorMessage);
+          swal("Ooops..!", errorMessage, "error");
         });
         e.target.reset();
     }
@@ -58,14 +65,6 @@ const Login = () => {
                 localStorage.setItem('token', idToken);
             }) ;
            
-    }
-
-    const signOut =()=>{
-        firebase.auth().signOut().then(() => {
-            // Sign-out successful.
-          }).catch((error) => {
-            // An error happened.
-          });
     }
 
 
@@ -87,7 +86,7 @@ const Login = () => {
     newUser.email = user.email;
     newUser.isSignedIn = true;
     setLoggedInUser(newUser);
-    alert('login successfull');
+    swal(`Welcome Back ${newUser.name}`, "Log in Successful", "success").then(()=>history.replace(from));
 
     // console.log('userg: ',user);
   }).catch((error) => {
