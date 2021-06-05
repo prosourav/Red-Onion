@@ -9,10 +9,12 @@ import { userContext } from '../../App';
 import swal from 'sweetalert';
 
 
+
 if(firebase.apps.length === 0){
     firebaseConfig.initializeApp(firebaseConfig);
   }
 const Login = () => {
+
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
     const [loggedInUser,setLoggedInUser] = useContext(userContext);
     // const [emailVerified,setEmailVerified]=useState(false);
@@ -69,6 +71,7 @@ const Login = () => {
 
 
     const handlegoogleLogin =()=>{
+      
         const googleProvider = new firebase.auth.GoogleAuthProvider();
         firebase.auth()
   .signInWithPopup(googleProvider)
@@ -131,8 +134,8 @@ const Login = () => {
             </div>
            
             <small style={{color:'black',fontWeight:'bold', margin:'5% 36%'}}>New User? <Link to='/signIn'>SignUp</Link> </small>
-           
-        </div>
+
+              </div>
         </div>
     );
 };

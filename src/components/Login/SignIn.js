@@ -4,10 +4,12 @@ import firebase from "firebase/app";
 import "firebase/auth";
 import firebaseConfig from './firebase.config';
 import { useForm } from "react-hook-form";
-import google from './../../Images/ICON/google.png';
 import './Login.css';
 import { Link, useHistory } from 'react-router-dom';
 import swal from 'sweetalert';
+import toast, { Toaster } from 'react-hot-toast';
+
+
 
 if(firebase.apps.length === 0){
     firebase.initializeApp(firebaseConfig);
@@ -18,20 +20,26 @@ if(firebase.apps.length === 0){
 const SignIn = () => {
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
     const history=useHistory();
-  
+    
     const onSubmit =( data , e)=> {
         
-        const {Name,email,password,Confirmpassword} = data;
+        const {Name,email,Confirmpassword} = data;
         // console.log(data);
+        
         firebase.auth().createUserWithEmailAndPassword(email,Confirmpassword)
         .then((userCredential) => {
 
           verifyEmail();
+          
           updateUserName(Name);
+          
           const user = userCredential.user;
           // console.log(user);
-          swal("Signup Is Almost Complete!", "A verification email will be sent to your provided email", "success").then(()=>history.push('/logIn'));
-          
+          toast.success('Verification link has been send');
+          setTimeout(()=>{ swal("Signup Is Almost Complete!", "Please Verify Your Email", "success")
+          .then(()=>history.push('/logIn'));},3000)
+         
+        //  }
           // ...
         })
         .catch((error) => {
@@ -67,6 +75,7 @@ const SignIn = () => {
 
     return (
         <div>
+        <Toaster/>
         <div className='form-box'>
         <h4 style={{textAlign:'center'}}>Please Signup</h4>
    
@@ -114,7 +123,8 @@ const SignIn = () => {
        
         <small style={{color:'black', margin:'25% 32%', fontWeight:'bold'}}>Have An Account? <Link to='/login'> login </Link></small>
         
-        </div>
+        </div>  
+        
         </div>
         
     );
