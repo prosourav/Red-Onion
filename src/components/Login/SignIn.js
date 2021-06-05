@@ -26,8 +26,9 @@ const SignIn = () => {
     // })
     const onSubmit =( data , e)=> {
         
-        const {Name,email,password} =data;
-        firebase.auth().createUserWithEmailAndPassword(email, password)
+        const {Name,email,password,Confirmpassword} = data;
+        // console.log(data);
+        firebase.auth().createUserWithEmailAndPassword(email,Confirmpassword)
         .then((userCredential) => {
           // Signed in
 
@@ -70,31 +71,31 @@ const SignIn = () => {
     
 
 
-    const handlegoogleLogin =()=>{
-        const googleProvider = new firebase.auth.GoogleAuthProvider();
-        firebase.auth()
-  .signInWithPopup(googleProvider)
-  .then((result) => {
-    /** @type {firebase.auth.OAuthCredential} */
-    const credential = result.credential;
+  //   const handlegoogleLogin =()=>{
+  //       const googleProvider = new firebase.auth.GoogleAuthProvider();
+  //       firebase.auth()
+  // .signInWithPopup(googleProvider)
+  // .then((result) => {
+  //   /** @type {firebase.auth.OAuthCredential} */
+  //   const credential = result.credential;
 
-    // This gives you a Google Access Token. You can use it to access the Google API.
-    const token = credential.accessToken;
-    // The signed-in user info.
-    const user = result.user;
+  //   // This gives you a Google Access Token. You can use it to access the Google API.
+  //   const token = credential.accessToken;
+  //   // The signed-in user info.
+  //   const user = result.user;
 
-    console.log('user: ',user);
-  }).catch((error) => {
-    // Handle Errors here.
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    // The email of the user's account used.
-    const email = error.email;
-    // The firebase.auth.AuthCredential type that was used.
-    const credential = error.credential;
-    // ...
-  });
-    }
+  //   console.log('user: ',user);
+  // }).catch((error) => {
+  //   // Handle Errors here.
+  //   const errorCode = error.code;
+  //   const errorMessage = error.message;
+  //   // The email of the user's account used.
+  //   const email = error.email;
+  //   // The firebase.auth.AuthCredential type that was used.
+  //   const credential = error.credential;
+  //   // ...
+  // });
+  //   }
 
 
     return (
@@ -120,6 +121,19 @@ const SignIn = () => {
         errors.password?.type === 'minLength' && <span className='text-danger'>Password is must be 7 digit long</span>
         }
         </div>
+
+
+
+        <div className='py-1'>
+        <input type="password" class="form-control"  placeholder='Confirm Password' {...register("Confirmpassword", { required: true, minLength:6, validate: (value) => value === watch('password'),
+        pattern:/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])\S{5,}$/ })} />
+        {errors.Confirmpassword?.type === 'pattern' && <small className='text-danger'> Password must be contain Uppercase lowerCase and digits</small> ||
+        errors.Confirmpassword?.type === 'required' && <span className='text-danger'>Password is required</span> || 
+        errors.Confirmpassword?.type === 'minLength' && <span className='text-danger'>Password is must be 7 digit long</span> ||
+        errors.Confirmpassword?.type === 'validate' && <span className='text-danger'>Password doesn't match</span>
+        }
+        </div>
+
         
         <div className='py-2 '>
         <input class="form-control bg-danger  text-white" type="submit"/> 
@@ -129,11 +143,7 @@ const SignIn = () => {
        <div style={{textAlign:"center"}}>  
         <h6>or</h6>
         </div>
-        <div className="G-sign">
-
-        <h5 style={{color:"whitesmoke"}} onClick={handlegoogleLogin} className="option mx-3" >  <img style={{width:'30px', height:'30px'}} src={google} alt="" /> &nbsp; Continue with Google</h5>
-
-        </div>
+      
        
         <small style={{color:'black', margin:'25% 32%', fontWeight:'bold'}}>Have An Account? <Link to='/login'> login </Link></small>
         
@@ -144,3 +154,11 @@ const SignIn = () => {
 };
 
 export default SignIn;
+
+
+
+// <div className="G-sign">
+
+// <h5 style={{color:"whitesmoke"}} onClick={handlegoogleLogin} className="option mx-3" >  <img style={{width:'30px', height:'30px'}} src={google} alt="" /> &nbsp; Continue with Google</h5>
+
+// </div>

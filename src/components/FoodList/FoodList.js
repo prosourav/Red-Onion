@@ -11,7 +11,7 @@ const FoodList = () => {
         .then(data=>setFoods(data))
     },[]);
     const selectedFoods = foods.filter(foods=> foods.dishType === mealType);
-    console.log(selectedFoods);
+    // console.log(selectedFoods);
     return (
         <div>
             <section className='NavItem d-flex justify-content-center align-items-center'>

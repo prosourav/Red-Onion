@@ -11,19 +11,16 @@ import Cart from './components/Cart/Cart';
 import SignIn from './components/Login/SignIn';
 import Login from './components/Login/Login';
 import Header from './components/Header/Header';
+import { getUser } from './components/Login/firebase.config';
 
 export const userContext = createContext();
 export const cartContext = createContext();
 
 function App() {
 
-  const [loggedInUser,setLoggedInUser] = useState({
-    name:'',
-    email:'',
-    isLoggedIn:false,
-    photoURL:''
-  });
-
+  const [loggedInUser,setLoggedInUser] = useState(getUser());
+ const user = getUser();
+//  console.log('app :',user);
 const [cart,setCart] = useState([]);
 
 

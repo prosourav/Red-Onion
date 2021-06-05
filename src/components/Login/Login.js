@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { useForm } from "react-hook-form";
 import { Link } from 'react-router-dom';
 import google from './../../Images/ICON/google.png';
@@ -14,6 +14,7 @@ if(firebase.apps.length === 0){
 const Login = () => {
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
     const [loggedInUser,setLoggedInUser] = useContext(userContext);
+    // const [emailVerified,setEmailVerified]=useState(false);
 
     const onSubmit =( data , e)=> {
 
@@ -22,15 +23,51 @@ const Login = () => {
         firebase.auth().signInWithEmailAndPassword(email, password)
         .then((userCredential) => {
           // Signed in
-          var user = userCredential.user;
-          console.log(user);
+          const user = userCredential.user;
+          const emailVerified = user.emailVerified;
+          if(emailVerified){
+           
+            setJWTToken();
+            const newUser ={...loggedInUser};
+            newUser.name = user.displayName;
+            newUser.email = user.email;
+            newUser.isSignedIn = true;
+            setLoggedInUser(newUser);
+            alert('login successfull');
+          }
+          else{
+            alert('Your Email is Not verified');
+          }
+            
+
         })
         .catch((error) => {
-          var errorCode = error.code;
-          var errorMessage = error.message;
+        //   const errorCode = error.code;
+          const errorMessage = error.message;
+          console.log('errorMessage:',errorMessage);
         });
         e.target.reset();
     }
+
+
+    const setJWTToken = () => {
+        return firebase
+            .auth().currentUser
+            .getIdToken(true)
+            .then(idToken => {
+                localStorage.setItem('token', idToken);
+            }) ;
+           
+    }
+
+    const signOut =()=>{
+        firebase.auth().signOut().then(() => {
+            // Sign-out successful.
+          }).catch((error) => {
+            // An error happened.
+          });
+    }
+
 
     const handlegoogleLogin =()=>{
         const googleProvider = new firebase.auth.GoogleAuthProvider();
@@ -38,22 +75,30 @@ const Login = () => {
   .signInWithPopup(googleProvider)
   .then((result) => {
     /** @type {firebase.auth.OAuthCredential} */
-    var credential = result.credential;
-
+    const credential = result.credential;
+    
     // This gives you a Google Access Token. You can use it to access the Google API.
-    var token = credential.accessToken;
+    const token = credential.accessToken;
     // The signed-in user info.
-    var user = result.user;
+    const user = result.user;
+    setJWTToken();
+    const newUser ={...loggedInUser};
+    newUser.name = user.displayName;
+    newUser.email = user.email;
+    newUser.isSignedIn = true;
+    setLoggedInUser(newUser);
+    alert('login successfull');
 
-    console.log('user: ',user);
+    // console.log('userg: ',user);
   }).catch((error) => {
     // Handle Errors here.
-    var errorCode = error.code;
-    var errorMessage = error.message;
+    // const errorCode = error.code;
+    const errorMessage = error.message;
     // The email of the user's account used.
-    var email = error.email;
+    // const email = error.email;
     // The firebase.auth.AuthCredential type that was used.
-    var credential = error.credential;
+    // const credential = error.credential;
+    console.log(errorMessage);
     // ...
   });
     }

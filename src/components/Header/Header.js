@@ -3,7 +3,7 @@ import './Header.css';
 import logo from './../../Images/logo.png'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faShoppingBasket, faShoppingCart } from '@fortawesome/free-solid-svg-icons'
-import { cartContext } from '../../App';
+import { cartContext, userContext } from '../../App';
 import { useHistory } from 'react-router';
 import { Link } from 'react-router-dom';
 
@@ -11,6 +11,8 @@ const Header = () => {
 
     const history = useHistory();
     const [cart,setCart] = useContext(cartContext);
+    const [loggedInUser,setLoggedInUser] = useContext(userContext);
+    console.log('loggedInUser: ',loggedInUser);
     return (   
         <div className='d-flex justify-content-between align-items-center bg-dark customStyle fixed-top'>
             <div className='pl-5'>
