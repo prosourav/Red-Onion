@@ -28,6 +28,14 @@
   .Foods{
     margin-top: 4%;
   }
-  
-  
-      
+  .food-btn{
+    margin: 2% 43%;
+    /* background: #dc3545; */
+    background: green;
+    width: 185px;
+    color: antiquewhite;
+    padding: 1%;
+    border-radius: 4px;
+    border: none;
+
+  }
