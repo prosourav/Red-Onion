@@ -9,6 +9,7 @@ import { cartContext } from '../../App';
 
 
 const FoodDetails = () => {
+    const [loggedInUser,setLoggedInUser] = useContext(useContext);
     const [cart,setCart] = useContext(cartContext);
     const [success,setSuccess] = useState(false);
     const [dishdetail,setdishdetail] = useState({});
@@ -34,7 +35,9 @@ const FoodDetails = () => {
     // adding cart and quantity value (product and dishdetail same but as a parameter i changed the name)
     const handleaddToCart = (product,qounatity) =>{
         console.log("product and quantity from function: ",product,qounatity);
+
         const newCart = {
+          UserName:loggedInUser.name,
           prdName:product.dishName,
           QuanTity:qounatity,
           cost: product.price,
