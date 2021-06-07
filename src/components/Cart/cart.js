@@ -15,13 +15,7 @@ const Cart = () => {
     
     const [cart,setCart] = useContext(cartContext);
     const { register, handleSubmit, formState: { errors }} = useForm();
-    const [formValue,setformValue] = useState({
-        Name:'',
-        RoadName:'',
-        FlatNo:'',
-        RoomNo:'',
-        AddressPIN:''
-    });
+    const [formValue,setformValue] = useState(null);
     const [isSubmitted,setIsSubmitted] = useState(false);
 
     const onSubmit =( data , e)=>{
@@ -37,12 +31,17 @@ const Cart = () => {
         e.target.reset();
     }
     
+    console.log(isSubmitted);
     const total = cart.reduce((sum,cart)=>sum + (cart.QuanTity * cart.cost),0);
     const tax = total * 0.05;
     const delivery = 4;
     const allTotal = tax + total + delivery;
 
-    // console.log(typeof(allTotal));
+    const processToCheckOut=()=>{
+        setIsSubmitted(true);
+    }
+
+
     return (
         
         <div>
@@ -118,7 +117,8 @@ const Cart = () => {
                    
                   </div>
                   <div className='py-2 '>
-                <input class="form-control bg-danger text-white" value='Checkout' type="submit"  />
+              {!formValue ? <input class="form-control bg-danger text-white" value='Submit Delivery Details' type="submit" disabled /> 
+                :<input class="form-control bg-danger text-white" value='Checkout' type="submit" onClick={processToCheckOut}/> }
                 </div>
                     </div>
                  
@@ -131,3 +131,10 @@ const Cart = () => {
 };
 
 export default Cart;
+
+// Name:'',
+// RoadName:'',
+// FlatNo:'',
+// RoomNo:'',
+// AddressPIN:''
+// }
