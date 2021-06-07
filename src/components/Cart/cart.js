@@ -36,6 +36,13 @@ const Cart = () => {
         console.log(data);
         e.target.reset();
     }
+    
+    const total = cart.reduce((sum,cart)=>sum + (cart.QuanTity * cart.cost),0);
+    const tax = total * 0.05;
+    const delivery = 4;
+    const allTotal = tax + total + delivery;
+
+    // console.log(typeof(allTotal));
     return (
         
         <div>
@@ -47,11 +54,11 @@ const Cart = () => {
             <hr />
             <div className='address-box'>
             <form onSubmit={handleSubmit(onSubmit)}>
-                <div className='py-1'>
+                <div className='py-2'>
                 <input type="text" class="form-control"  placeholder='Name' {...register("Name", { required: true })} />
                 {errors.Name && <span className='text-danger'>Name is required</span>}
                 </div>
-                <div className='py-1'>
+                <div className='py-2'>
                 <input type="text" class="form-control"  placeholder='Road Name' {...register("RoadName", { required: true, maxLength: 20, minLength:5})} />
                 {errors.RoadName && <span className='text-danger'> Length of Road Name should be more 5</span>}
                 </div>
@@ -90,7 +97,31 @@ const Cart = () => {
                    {
                        cart.map(cart=><CartDetails cart={cart}></CartDetails>)
                    }
+                   <div className='mx-4'>
+                   <div className='d-flex align-items-center justify-content-between'>
+                   <h4>SubTotal :</h4>
+                   <h5>${total}</h5>
+                   </div>
+                   <div className='d-flex align-items-center justify-content-between'>
+                   <h4>Tax :</h4>
+                   <h5>${tax}</h5>
+                   </div>
+                   <div className='d-flex align-items-center justify-content-between'>
+                   <h4>Delivery Charge :</h4>
+                   <h5>${delivery}</h5>
+                   </div>
+                   <hr />
+                   <div className='d-flex align-items-center justify-content-between'>
+                   <h4>Total :</h4>
+                   <h5>${allTotal}</h5>
+                   </div>
+                   
+                  </div>
+                  <div className='py-2 '>
+                <input class="form-control bg-danger text-white" value='Checkout' type="submit"  />
+                </div>
                     </div>
+                 
                     </div>
                 </div>
          </div>
