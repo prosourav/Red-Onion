@@ -1,0 +1,15 @@
+.item{
+   background-color:rgb(242, 239, 239);
+   margin: 4%;
+   padding: 3%;
+   border-radius: 10px;
+}
+.cal-sec{
+   border-radius: 12px;
+   padding: 2%;
+   background-color: white;
+}
+.cal-sec button{
+   background:none;
+   border: none;
+}

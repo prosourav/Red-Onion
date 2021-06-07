@@ -5,11 +5,11 @@ import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartPlus, faCheckCircle } from '@fortawesome/free-solid-svg-icons';
-import { cartContext } from '../../App';
+import { cartContext, userContext } from '../../App';
 
 
 const FoodDetails = () => {
-    const [loggedInUser,setLoggedInUser] = useContext(useContext);
+    const [loggedInUser,setLoggedInUser] = useContext(userContext);
     const [cart,setCart] = useContext(cartContext);
     const [success,setSuccess] = useState(false);
     const [dishdetail,setdishdetail] = useState({});

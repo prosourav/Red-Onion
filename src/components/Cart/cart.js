@@ -1,17 +1,19 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import Header from '../Header/Header';
 import './Cart.css';
 import { useForm } from 'react-hook-form';
 import {CardElement, Elements} from '@stripe/react-stripe-js';
 import {loadStripe} from '@stripe/stripe-js';
 import PaymentCard from './PaymentCard';
+import { cartContext } from '../../App';
+import CartDetails from './CartDetails';
 
 
 const stripePromise = loadStripe('pk_test_TYooMQauvdEDq54NiTphI7jx');
 
 const Cart = () => {
     
- 
+    const [cart,setCart] = useContext(cartContext);
     const { register, handleSubmit, formState: { errors }} = useForm();
     const [formValue,setformValue] = useState({
         Name:'',
@@ -80,11 +82,15 @@ const Cart = () => {
             </div>
         </div>
                 <div className='col-md-6 col-sm-12 cart-box'>
-                    <div className='cart-calculation mt-3'>
-                    <h2 className='mb-5'>Form Star Kabab And Restaura
+                    <div className='cart-calculation mt-3 ml-2'>
+                    <h3 className='mb-5'>Form Star Kabab And Restaura
                     Arriving in 20-30 min
-                    107 Rd No 9</h2>
-                    
+                    107 Rd No 9</h3>
+                    <div className='cart-item'>
+                   {
+                       cart.map(cart=><CartDetails cart={cart}></CartDetails>)
+                   }
+                    </div>
                     </div>
                 </div>
          </div>
