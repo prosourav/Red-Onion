@@ -34,9 +34,9 @@ const Cart = () => {
     // console.log(isSubmitted);
     const total = cart.reduce((sum,cart)=>sum + (cart.QuanTity * cart.cost),0);
     const tax = total * 0.10;
-    const delivery = total * 0.07;
+    const delivery = parseInt((total * 0.07).toFixed(2));
     const allTotal = tax + total + delivery;
-
+    
     const processToCheckOut=()=>{
         setIsSubmitted(true);
     }
@@ -74,7 +74,8 @@ const Cart = () => {
                 {errors.FullAddress && <span className='text-danger'>Full Address No is required</span>}
                 </div>
                 <div className='py-2 '>
-                <input class="form-control bg-danger text-white" type="submit"  />
+                {cart.length ? <input class="form-control bg-danger text-white" type="submit"  />
+                 : <input class="form-control bg-danger text-white" type="submit" disabled />}
                 </div>
               
             </form>

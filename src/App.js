@@ -12,22 +12,27 @@ import SignIn from './components/Login/SignIn';
 import Login from './components/Login/Login';
 import { getUser } from './components/Login/firebase.config';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
-import completeOrder from './components/completeOrder/completeOrder';
-import NotFound from './components/NotFound/NotFound';
+import CompleteOrder from './components/CompleteOrder/CompleteOrder';
+import Header from './components/Header/Header';
+import Footer from './components/Footer/Footer';
+
+
 
 export const userContext = createContext();
 export const cartContext = createContext();
 
 function App() {
 
-  const [loggedInUser,setLoggedInUser] = useState(getUser());
+const [loggedInUser,setLoggedInUser] = useState(getUser());
  const user = getUser();
 //  console.log('app :',user);
 const [cart,setCart] = useState([]);
 
-
+// console.log(loggedInUser.name);
 useEffect(()=>{
-  fetch('http://localhost:8000/myCart')
+  const UserName = loggedInUser.name;
+  const url = `http://localhost:8000/myCart?name=${loggedInUser.name}`;
+  fetch(url)
   .then(res=>res.json())
   .then(data=>setCart(data));
 },[cart]);
@@ -66,13 +71,14 @@ useEffect(()=>{
       <SignIn></SignIn>
      </Route>
 
+
      <Route path='/completeOrder'>
-      <completeOrder></completeOrder>
+     <Header></Header>
+      <CompleteOrder></CompleteOrder>
+      <Footer></Footer>
      </Route>
 
-     <Route path='*'>
-     <NotFound></NotFound>
-     </Route>
+    
      
     </div>
     </Switch>
