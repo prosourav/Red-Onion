@@ -31,10 +31,10 @@ const Cart = () => {
         e.target.reset();
     }
     
-    console.log(isSubmitted);
+    // console.log(isSubmitted);
     const total = cart.reduce((sum,cart)=>sum + (cart.QuanTity * cart.cost),0);
-    const tax = total * 0.05;
-    const delivery = 4;
+    const tax = total * 0.10;
+    const delivery = total * 0.07;
     const allTotal = tax + total + delivery;
 
     const processToCheckOut=()=>{
@@ -62,7 +62,7 @@ const Cart = () => {
                 {errors.RoadName && <span className='text-danger'> Length of Road Name should be more 5</span>}
                 </div>
                 <div className='py-2'>
-                <input type="email" class="form-control"  placeholder='Flat No' {...register("FlatNo", { required: true })} />
+                <input type="text" class="form-control"  placeholder='Flat No' {...register("FlatNo", { required: true })} />
                 {errors.FlatNo && <span className='text-danger'> Flat No is required</span>}
                 </div>
                 <div className='py-2'>
@@ -81,7 +81,7 @@ const Cart = () => {
             {isSubmitted &&  <div>
                    <h1>Please Make Payment</h1>
                       <Elements stripe={stripePromise}>
-                      <PaymentCard></PaymentCard>
+                      <PaymentCard formValue={formValue}></PaymentCard>
                       </Elements>
             </div>}
  
@@ -132,9 +132,3 @@ const Cart = () => {
 
 export default Cart;
 
-// Name:'',
-// RoadName:'',
-// FlatNo:'',
-// RoomNo:'',
-// AddressPIN:''
-// }

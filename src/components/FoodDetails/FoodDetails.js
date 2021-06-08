@@ -33,13 +33,13 @@ const FoodDetails = () => {
    
     
     // adding cart and quantity value (product and dishdetail same but as a parameter i changed the name)
-    const handleaddToCart = (product,qounatity) =>{
-        console.log("product and quantity from function: ",product,qounatity);
+    const handleaddToCart = (product,quantity) =>{
+        console.log("product and quantity from function: ",product,quantity);
 
         const newCart = {
           UserName:loggedInUser.name,
           prdName:product.dishName,
-          QuanTity:qounatity,
+          QuanTity:quantity,
           cost: product.price,
           prdImage:product.firstPhoto
         }
@@ -47,9 +47,9 @@ const FoodDetails = () => {
         const added = cart.find(cart=>cart.prdName===product.dishName);
 
         if(added){
-          // console.log("product and quantity from if block of function : ",product,qounatity);
+          // console.log("product and quantity from if block of function : ",product,quantity);
             const id = added._id;
-            const newQuantity = qounatity;
+            const newQuantity = quantity;
             const updateCartQuantity = {id,newQuantity} 
 
             // console.log('updateCartQuantity:',updateCartQuantity)

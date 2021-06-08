@@ -51,7 +51,7 @@ const handleUpdate =(id,newQuantity)=>{
           <div className="cal-sec">
             <button onClick={()=>handleUpdate(_id,QuanTity+1)}>+</button>
             <span className="px-2">{QuanTity}</span>
-            <button onClick={()=>handleUpdate(_id,QuanTity-1)}>-</button>
+            <button onClick={QuanTity>1 ? ()=>handleUpdate(_id,QuanTity-1) : false}>-</button>
           </div>
           <div>
             <button className="my-3 text-white bg-danger rounded" onClick={()=>handleDelete(_id)}>

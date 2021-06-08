@@ -10,9 +10,10 @@ import FoodDetails from './components/FoodDetails/FoodDetails';
 import Cart from './components/Cart/Cart';
 import SignIn from './components/Login/SignIn';
 import Login from './components/Login/Login';
-// import Header from './components/Header/Header';
 import { getUser } from './components/Login/firebase.config';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
+import completeOrder from './components/completeOrder/completeOrder';
+import NotFound from './components/NotFound/NotFound';
 
 export const userContext = createContext();
 export const cartContext = createContext();
@@ -65,6 +66,13 @@ useEffect(()=>{
       <SignIn></SignIn>
      </Route>
 
+     <Route path='/completeOrder'>
+      <completeOrder></completeOrder>
+     </Route>
+
+     <Route path='*'>
+     <NotFound></NotFound>
+     </Route>
      
     </div>
     </Switch>
