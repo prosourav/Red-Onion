@@ -1,6 +1,16 @@
-.map{
-   width: 85%;
+.map-div img{
+   width: 80%;
 }
-.rider{
-   width: 60%;
+.center{
+  text-align: center;
+}
+.main{
+   margin-top: 6%;
+}
+.delivery{
+   border: 2px solid red;
+   background: rgb(250, 241, 241)
+}
+.delivery-icon{
+   text-align: center;
 }

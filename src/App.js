@@ -20,6 +20,7 @@ import Footer from './components/Footer/Footer';
 
 export const userContext = createContext();
 export const cartContext = createContext();
+export const orderContext = createContext();
 
 function App() {
 
@@ -27,6 +28,7 @@ const [loggedInUser,setLoggedInUser] = useState(getUser());
  const user = getUser();
 //  console.log('app :',user);
 const [cart,setCart] = useState([]);
+const [orderId, setOrderId] = useState('');
 
 // console.log(loggedInUser.name);
 useEffect(()=>{
@@ -42,6 +44,7 @@ useEffect(()=>{
   return (
     <userContext.Provider value = {[loggedInUser,setLoggedInUser]}>
     <cartContext.Provider value = {[cart,setCart]}>
+    <orderContext.Provider value = {[orderId,setOrderId]}>
     <Router>
     <Switch>
     <div>
@@ -83,6 +86,7 @@ useEffect(()=>{
     </div>
     </Switch>
     </Router>
+    </orderContext.Provider>
     </cartContext.Provider>
     </userContext.Provider>
   );
