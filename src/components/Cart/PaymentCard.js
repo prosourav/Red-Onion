@@ -1,4 +1,5 @@
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
+import moment from "moment";
 import { useContext } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import { useHistory } from "react-router";
@@ -71,9 +72,8 @@ const PaymentCard = (props) => {
       let genaratedId = gorderid();
       setOrderId(genaratedId);
 
-      let thirtyMinutesLater = new Date();
-      thirtyMinutesLater.setMinutes(thirtyMinutesLater.getMinutes() + 30);
-      
+      const time = moment().add(35, 'minutes').format('hh:mm A');
+            
       let product = [];
       cart.forEach((cart) => {
         product.push({ Name: cart.prdName, Quantity: cart.QuanTity });
@@ -83,7 +83,7 @@ const PaymentCard = (props) => {
       newOrder.Items = product;
       newOrder.userName = loggedInUser.name;
       newOrder.orderId = genaratedId;
-      newOrder.time = thirtyMinutesLater
+      newOrder.time = time;
 
       const url = "http://localhost:8000/orders";
       fetch(url, {

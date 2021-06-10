@@ -8,8 +8,9 @@
    margin-top: 6%;
 }
 .delivery{
-   border: 2px solid red;
-   background: rgb(250, 241, 241)
+   /* border: 2px solid red; */
+   background: rgb(250, 241, 241);
+   border-radius: 12px;
 }
 .delivery-icon{
    text-align: center;
