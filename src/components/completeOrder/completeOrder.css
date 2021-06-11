@@ -15,3 +15,8 @@
 .delivery-icon{
    text-align: center;
 }
+@media (max-width: 760px){
+   .maindiv{
+      margin-top: 20%;
+   }
+}

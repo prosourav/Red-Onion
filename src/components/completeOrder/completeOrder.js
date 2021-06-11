@@ -23,7 +23,7 @@ const CompleteOrder = () => {
     },[myOrder]);
     console.log('my order orderId: ', myOrder);
    return (
-      <div className='container-fluid main'>
+      <div className='container-fluid main maindiv'>
       <div className='row'>
         <div className="col-md-8 col-sm-12 ml-5 mt-5 map-div">
         <div className='center'>
@@ -53,7 +53,7 @@ const CompleteOrder = () => {
          </div>
    
          </div>
-         <button style={{height:'70px', width:'100%',color:'white',background:'red',border:'none'}}>Contact With Rider</button>
+         <button style={{height:'70px', width:'100%',color:'white',background:'red'}}>Contact With Rider</button>
          </div>
       
       

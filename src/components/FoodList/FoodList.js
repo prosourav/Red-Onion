@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import Foodcard from './../Foodcard/Foodcard';
 import './FoodList.css';
 
+
 const FoodList = ({searchResult,setSearhResult}) => {
     const [mealType, setMealType] = useState('Breakfast');
     const [foods, setFoods] = useState([]);
@@ -20,7 +21,7 @@ const FoodList = ({searchResult,setSearhResult}) => {
     return (
         <div>
       
-           
+    
             {(searchResult.length === 18)  ?
              <section className='NavItem d-flex justify-content-center align-items-center'>
              <Link onClick={()=>setMealType('Breakfast')}><span className={mealType === 'Breakfast' && 'food'}>Breakfast</span></Link>
@@ -44,7 +45,7 @@ const FoodList = ({searchResult,setSearhResult}) => {
                         </Foodcard>)
               }
             </section>
-      {  (searchResult.length !== 18) &&   <button className='food-btn' onClick={()=>searchResult.length=18}>see our all food</button>}
+      {  (searchResult.length !== 18) &&   <button className='food-btn' onClick={()=>searchResult.length=18}>See our all food</button>}
         </div>
     );
 };

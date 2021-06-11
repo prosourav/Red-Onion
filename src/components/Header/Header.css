@@ -7,3 +7,20 @@
     margin-left: 5px;
     width: 90px;
 }
+@media (max-width: 760px){
+    .customStyle{
+        flex-direction: column;
+        height: 14%;
+        text-align: center;
+        width: auto;
+    }
+    .logo{
+        padding-left: 0 !important;
+    }
+    .nav-btn{
+        width: 70px;
+    }
+    .navigation{
+        margin: 0 auto;
+    }
+ }

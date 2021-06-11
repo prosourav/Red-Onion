@@ -1,4 +1,12 @@
 .sec-one{
     margin: 5% 0;
-    width: 580px;
+    /* width: 580px; */
+}
+@media (max-width: 760px){
+    .sec-two{
+        flex-wrap: wrap;
+    }
+    .about-text{
+        max-width: 90%;
+    }
 }

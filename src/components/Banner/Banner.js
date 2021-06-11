@@ -13,10 +13,10 @@ const Banner = ({setSearchProducts}) => {
 
         <div className='banner d-flex justify-content-center align-items-center '>
         <div>
-        <h1>Best food waiting for your Belly</h1>
+        <h1 className='banner-heading'>Best food waiting for your Belly</h1>
              <div className='search'>
-             <input type="text" onChange={getSearchItem} placeholder='Search your food here'/>
-             <button className='search-button' onClick={()=>setSearchProducts(search)}>Search</button>
+             <input type="text" onChange={getSearchItem} placeholder='Search your food here' className='search-bar'/>
+             <button className='search-button' onClick={()=>setSearchProducts(search,window.scrollBy(0, 500))}>Search</button>
              </div>
              </div>
         </div>

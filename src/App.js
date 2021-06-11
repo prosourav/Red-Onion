@@ -75,11 +75,11 @@ useEffect(()=>{
      </Route>
 
 
-     <Route path='/completeOrder'>
+     <PrivateRoute path='/completeOrder'>
      <Header></Header>
       <CompleteOrder></CompleteOrder>
       <Footer></Footer>
-     </Route>
+     </PrivateRoute>
 
     
      

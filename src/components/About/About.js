@@ -13,10 +13,11 @@ const About = () => {
         <div className='container'>
         <div className='sec-one'>
         <h1>Why To Choose Us</h1>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus, culpa recusandae consectetur exercitationem autem perspiciatis amet unde accusamus possimus vitae rerum laborum  sit amet consectetur adipisicing elit. Doloribus,  nostrum ipsum!
+            <p className='about-text'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus, culpa recusandae consectetur exercitationem autem perspiciatis amet unde accusamus possimus vitae rerum laborum  sit amet consectetur adipisicing elit. Doloribus,  nostrum 
+            ipsum!
             </p>
             </div>
-            <div className='sec-two d-flex'>
+            <div className='sec-two d-flex '>
                 {
                     about.map(about=><AboutCard key={about._id} about={about}></AboutCard>)
                 }

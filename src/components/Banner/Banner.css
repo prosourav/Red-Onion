@@ -26,3 +26,20 @@ input{
     width: 90px;
     height: 40px;
 }
+@media (max-width: 760px){
+   .banner-heading{
+      font-size: 20px;
+       font-size: large;
+        text-align: center;
+   }
+   .search-bar{
+       width: 300px;
+   }
+   .search-button{
+     position:relative;
+     left: 40%;
+   }
+   .banner{
+       width: 100%;
+   }
+}

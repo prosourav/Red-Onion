@@ -85,6 +85,7 @@ const FoodDetails = () => {
     return (
         <>
         <Header></Header>
+      
         <div className='container'>
         <div className='row d-flex flex-wrap'>
         <div className='col-md-6 col-sm-12'>
