@@ -85,14 +85,14 @@ const PaymentCard = (props) => {
       newOrder.orderId = genaratedId;
       newOrder.time = time;
 
-      const url = "http://localhost:8000/orders";
+      const url = "https://polar-basin-19195.herokuapp.com/orders";
       fetch(url, {
         method: "POST",
         headers: { "content-type": "application/json" },
         body: JSON.stringify(newOrder),
       }).then((res) => console.log("server side response: ", res));
 
-      const Url = "http://localhost:8000/deleteCart";
+      const Url = "https://polar-basin-19195.herokuapp.com/deleteCart";
       fetch(Url, {
         method: "DELETE",
       })

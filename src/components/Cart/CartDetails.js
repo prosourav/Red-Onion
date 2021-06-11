@@ -13,7 +13,7 @@ const { prdName, QuanTity, cost, prdImage, _id} = props.cart;
 
  const handleDelete=(id)=>{
     
-   const url = `http://localhost:8000/deleteItem/${id}`;
+   const url = `https://polar-basin-19195.herokuapp.com/deleteItem/${id}`;
    fetch(url,{
        method:'DELETE'
    })
@@ -25,7 +25,7 @@ const { prdName, QuanTity, cost, prdImage, _id} = props.cart;
 const handleUpdate =(id,newQuantity)=>{
    // console.log('id:',id +'  ',"quantity: ",newQuantity)
    const updateCartQuantity = {id,newQuantity} 
-   const url = `http://localhost:8000/updateQuantity/${id}`;
+   const url = `https://polar-basin-19195.herokuapp.com/updateQuantity/${id}`;
             fetch(url,{
               method:'PATCH',
               headers:{'Content-type' : 'application/json'},

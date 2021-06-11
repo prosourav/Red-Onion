@@ -21,7 +21,7 @@ const FoodDetails = () => {
 
     // getting details of dish from db
     useEffect(()=>{
-      const url = 'http://localhost:8000/fooddetail'
+      const url = 'https://polar-basin-19195.herokuapp.com/fooddetail'
       fetch(`${url}/${id}`)
       .then(res=> res.json())
       .then(data=>{
@@ -53,7 +53,7 @@ const FoodDetails = () => {
             const updateCartQuantity = {id,newQuantity} 
 
             // console.log('updateCartQuantity:',updateCartQuantity)
-            const url = `http://localhost:8000/updateQuantity/${id}`;
+            const url = `https://polar-basin-19195.herokuapp.com/updateQuantity/${id}`;
             fetch(url,{
               method:'PATCH',
               headers:{'Content-type' : 'application/json'},
@@ -66,7 +66,7 @@ const FoodDetails = () => {
             setSuccess(true);
         }
         else{
-             const url = 'http://localhost:8000/addToCart'
+             const url = 'https://polar-basin-19195.herokuapp.com/addToCart'
                fetch(url,
                {method:'POST',
                headers:{'content-type' : 'application/json'},

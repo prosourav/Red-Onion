@@ -27,7 +27,7 @@ const Banner = ({setSearchProducts}) => {
 export default Banner;
 
 
-  // const url = 'http://localhost:8000/dishesdata?search='+search;
+  // const url = 'https://polar-basin-19195.herokuapp.com/dishesdata?search='+search;
         // useEffect(()=>{
         //     fetch(url)
         //     .then(res=>res.json())

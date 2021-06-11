@@ -4,7 +4,7 @@ import WhiteLogo from '../../Images/logo.png';
 import { Link } from 'react-router-dom';
 const Footer = () => {
     return (
-        <footer className="bg-dark py-3">
+        <footer className="bg-dark py-3 footer">
             <div className="container">
                 <div className="row footer-top py-5">
                     <div className="col-md-6 mb-5">

@@ -29,7 +29,7 @@ const AddAbout = () => {
          description:data.Description,
        }
        console.log('my new dish: ',About);
-       const url = 'http://localhost:8000/addAbout'
+       const url = 'https://polar-basin-19195.herokuapp.com/addAbout'
        fetch(url,
          {method:'POST',
          headers:{'content-type' : 'application/json'},

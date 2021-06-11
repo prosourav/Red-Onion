@@ -11,7 +11,7 @@ const Home = () => {
     const [searchResult,setSearhResult] = useState([]);
     // console.log('From home: ',searchproducts);
     useEffect(()=>{
-        fetch('http://localhost:8000/dishesdata?search='+searchproducts)
+        fetch('https://polar-basin-19195.herokuapp.com/dishesdata?search='+searchproducts)
         .then(res=>res.json())
         .then(data=>setSearhResult(data));
     },[searchproducts]);

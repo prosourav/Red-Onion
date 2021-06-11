@@ -4,7 +4,7 @@ import './About.css';
 const About = () => {
     const [about,setAbout] = useState([]);
     useEffect(()=>{
-        fetch('http://localhost:8000/about')
+        fetch('https://polar-basin-19195.herokuapp.com/about')
         .then(res=>res.json())
         .then(data=>setAbout(data))
     },[]);

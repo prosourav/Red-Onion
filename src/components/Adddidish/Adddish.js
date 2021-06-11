@@ -44,7 +44,7 @@ const Adddish = () => {
           price:data.Price,
         }
         console.log('my new dish: ',NewDish);
-        const url = 'http://localhost:8000/adddish'
+        const url = 'https://polar-basin-19195.herokuapp.com/adddish'
         fetch(url,
           {method:'POST',
           headers:{'content-type' : 'application/json'},

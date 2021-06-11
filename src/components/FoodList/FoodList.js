@@ -10,7 +10,7 @@ const FoodList = ({searchResult,setSearhResult}) => {
    
    
     useEffect(()=>{
-        fetch('http://localhost:8000/dishes')
+        fetch('https://polar-basin-19195.herokuapp.com/dishes')
         .then(res=>res.json())
         .then(data=>setFoods(data))
     },[]);

@@ -33,7 +33,7 @@ const [orderId, setOrderId] = useState('');
 // console.log(loggedInUser.name);
 useEffect(()=>{
   const UserName = loggedInUser.name;
-  const url = `http://localhost:8000/myCart?name=${loggedInUser.name}`;
+  const url = `https://polar-basin-19195.herokuapp.com/myCart?name=${loggedInUser.name}`;
   fetch(url)
   .then(res=>res.json())
   .then(data=>setCart(data));
