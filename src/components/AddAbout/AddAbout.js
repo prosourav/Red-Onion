@@ -15,7 +15,7 @@ const AddAbout = () => {
         
         axios.post("https://api.imgbb.com/1/upload", imageData )
           .then(response => {
-             console.log("success",response);
+            //  console.log("success",response);
             setImageUrl(response.data.data.url);
           })
           .catch(error => {
@@ -28,7 +28,7 @@ const AddAbout = () => {
          heading:data.Heading,
          description:data.Description,
        }
-       console.log('my new dish: ',About);
+      //  console.log('my new dish: ',About);
        const url = 'https://polar-basin-19195.herokuapp.com/addAbout'
        fetch(url,
          {method:'POST',

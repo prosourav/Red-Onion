@@ -16,8 +16,8 @@ const FoodList = ({searchResult,setSearhResult}) => {
     },[]);
 
     const selectedFoods = foods.filter(foods=> foods.dishType === mealType);
-    console.log('searchResult: ',searchResult);
-     searchResult ? console.log('many food'): console.log('no food');
+    // console.log('searchResult: ',searchResult);
+    //  searchResult ? console.log('many food'): console.log('no food');
     return (
         <div>
       

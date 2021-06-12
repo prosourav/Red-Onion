@@ -2,8 +2,8 @@ import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import moment from "moment";
 import { useContext } from "react";
 import toast, { Toaster } from "react-hot-toast";
-import { useHistory } from "react-router";
-import { useState } from "react/cjs/react.development";
+import { useHistory } from "react-router-dom";
+import { useState } from "react";
 import swal from "sweetalert";
 import { cartContext, orderContext, userContext } from "../../App";
 import "./PaymentCard.css";
@@ -100,7 +100,7 @@ const PaymentCard = (props) => {
         .then((result) => {
           console.log("success", result);
         });
-        console.log(newOrder);
+        // console.log(newOrder);
       setError(false);
     
       toast.dismiss(toastId);

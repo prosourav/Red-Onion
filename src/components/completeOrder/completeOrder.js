@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import './CompleteOrder.css';
 import map from './../../Images/ordercomplete.png'
 import rider from './../../Images/Image/rider.png';
-import { useContext, useState } from 'react/cjs/react.development';
+import { useContext, useState } from 'react';
 import { orderContext, userContext } from '../../App';
 import helmet from './../../Images/Image/helmet.png';
 
@@ -16,12 +16,12 @@ const CompleteOrder = () => {
    
    useEffect(()=>{
       // const UserName = loggedInUser.name;
-      const url = `http://localhost:8000/myOrders?orderId=${orderId}`;
+      const url = `https://polar-basin-19195.herokuapp.com/myOrders?orderId=${orderId}`;
       fetch(url)
       .then(res=>res.json())
       .then(data=>setMyorder(data[0]));
-    },[myOrder]);
-    console.log('my order orderId: ', myOrder);
+    },[orderId]);
+   //  console.log('my order orderId: ', myOrder);
    return (
       <div className='container-fluid main maindiv'>
       <div className='row'>

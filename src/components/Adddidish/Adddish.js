@@ -43,7 +43,7 @@ const Adddish = () => {
           description:data.Description,
           price:data.Price,
         }
-        console.log('my new dish: ',NewDish);
+        // console.log('my new dish: ',NewDish);
         const url = 'https://polar-basin-19195.herokuapp.com/adddish'
         fetch(url,
           {method:'POST',

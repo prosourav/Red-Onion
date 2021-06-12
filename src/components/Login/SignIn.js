@@ -133,9 +133,3 @@ const SignIn = () => {
 export default SignIn;
 
 
-
-// <div className="G-sign">
-
-// <h5 style={{color:"whitesmoke"}} onClick={handlegoogleLogin} className="option mx-3" >  <img style={{width:'30px', height:'30px'}} src={google} alt="" /> &nbsp; Continue with Google</h5>
-
-// </div>

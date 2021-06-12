@@ -4,7 +4,7 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
+  
 } from "react-router-dom";
 import FoodDetails from './components/FoodDetails/FoodDetails';
 import Cart from './components/Cart/Cart';
@@ -32,7 +32,7 @@ const [orderId, setOrderId] = useState('');
 
 // console.log(loggedInUser.name);
 useEffect(()=>{
-  const UserName = loggedInUser.name;
+  // const UserName = loggedInUser.name;
   const url = `https://polar-basin-19195.herokuapp.com/myCart?name=${loggedInUser.name}`;
   fetch(url)
   .then(res=>res.json())

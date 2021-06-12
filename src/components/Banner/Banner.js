@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import './Banner.css';
 const Banner = ({setSearchProducts}) => {
     const [search,setSearch] = useState('');
@@ -26,10 +26,3 @@ const Banner = ({setSearchProducts}) => {
 
 export default Banner;
 
-
-  // const url = 'https://polar-basin-19195.herokuapp.com/dishesdata?search='+search;
-        // useEffect(()=>{
-        //     fetch(url)
-        //     .then(res=>res.json())
-        //     .then(data=>setSearchProducts(data));
-        // },[search]);

@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { useParams } from 'react-router';
+import { useParams } from 'react-router-dom';
 import './FoodDetails.css';
 import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
@@ -34,7 +34,7 @@ const FoodDetails = () => {
     
     // adding cart and quantity value (product and dishdetail same but as a parameter i changed the name)
     const handleaddToCart = (product,quantity) =>{
-        console.log("product and quantity from function: ",product,quantity);
+        // console.log("product and quantity from function: ",product,quantity);
 
         const newCart = {
           UserName:loggedInUser.name,

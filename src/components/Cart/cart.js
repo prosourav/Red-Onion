@@ -27,7 +27,7 @@ const Cart = () => {
             FullAddress:data.FullAddress
         }
         setformValue(newAddress);
-        console.log(data);
+        // console.log(data);
         e.target.reset();
     }
     
@@ -90,12 +90,12 @@ const Cart = () => {
         </div>
                 <div className='col-md-6 col-sm-12 cart-box'>
                     <div className='cart-calculation mt-3 ml-2'>
-                    <h3 className='mb-5'>Form Star Kabab And Restaura
-                    Arriving in 20-30 min
-                    107 Rd No 9</h3>
+                    <h3 className='mb-5'>Form Brownie Bites And Restaura
+                    Arriving in 25-40 min
+                    32/A Rd No 9</h3>
                     <div className='cart-item'>
                    {
-                       cart.map(cart=><CartDetails cart={cart}></CartDetails>)
+                       cart.map(cart=><CartDetails cart={cart} key={cart._id}></CartDetails>)
                    }
                    <div className='mx-4'>
                    <div className='d-flex align-items-center justify-content-between'>

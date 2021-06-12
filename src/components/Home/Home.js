@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useEffect } from 'react/cjs/react.development';
+import { useEffect } from 'react';
 import About from '../About/About';
 import Banner from '../Banner/Banner';
 import FoodList from '../FoodList/FoodList';

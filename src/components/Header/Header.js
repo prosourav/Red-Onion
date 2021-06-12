@@ -4,7 +4,7 @@ import logo from './../../Images/logo.png'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
 import { cartContext, userContext } from '../../App';
-import { useHistory } from 'react-router';
+import { useHistory } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import "firebase/auth";
 import firebase from "firebase/app";
