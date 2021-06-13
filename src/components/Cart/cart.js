@@ -89,8 +89,8 @@ const Cart = () => {
             </div>
         </div>
                 <div className='col-md-6 col-sm-12 cart-box'>
-                    <div className='cart-calculation mt-3 ml-2'>
-                    <h3 className='mb-5'>Form Brownie Bites And Restaura
+                    <div className='cart-calculation mt-3 ml-5'>
+                    <h3 className='mb-5 ml-4'>Form Brownie Bites And Restaura
                     Arriving in 25-40 min
                     32/A Rd No 9</h3>
                     <div className='cart-item'>
