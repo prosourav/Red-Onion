@@ -5,11 +5,11 @@ dinner and they are having an search bar to search food.If he choose a dish he c
 
 ## Tech Stack
 
-**Client:** React, Redux, React-Bootstrap,ReactHook form,Firebase Autentication,Stripe Payment gateway
+**Client:** React, React-Bootstrap,ReactHook form,Firebase Autentication,Stripe Payment gateway
 ReatRouter,JWT token etc 
 
 **Server:** Node, Express, Mongodb
 
 ## Deployment
 
-this site's frontend has been deployed to firebase and backend are deployed to Heroku
+This site's frontend has been deployed to firebase and backend are deployed to Heroku
